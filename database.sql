@@ -1,5 +1,5 @@
-CREATE DATABASE cars;
-CREATE TABLE carstreat(
+CREATE DATABASE cars_treatments;
+CREATE TABLE treatments(
   treatment_number SERIAL PRIMARY KEY,
   treatment_information VARCHAR(255),
   date VARCHAR(255),
