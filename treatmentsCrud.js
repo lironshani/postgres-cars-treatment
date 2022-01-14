@@ -1,8 +1,8 @@
+const { verifyToken } = require("./middlewares");
 const client = require("./db");
 
 const init = (app) => {
-  client.connect();
-  app.post("/treatments", async (req, res) => {
+  app.post("/treatments", verifyToken, async (req, res) => {
     try {
       const { treatment_information, date, worker_email, car_number } =
         req.body;
@@ -16,7 +16,7 @@ const init = (app) => {
       client.end();
     }
   });
-  app.get("/treatments", async (req, res) => {
+  app.get("/treatments", verifyToken, async (req, res) => {
     try {
       const all_treatments = await client.query("SELECT * FROM treatments");
       res.json(all_treatments.rows);
@@ -38,7 +38,7 @@ const init = (app) => {
       client.end();
     }
   });
-  app.put("/treatments/:id", async (req, res) => {
+  app.put("/treatments/:id", verifyToken, async (req, res) => {
     try {
       const { id } = req.params;
       const { treatment_information, date, worker_email, car_number } =
@@ -53,7 +53,7 @@ const init = (app) => {
       client.end();
     }
   });
-  app.delete("/treatments/:id", async (req, res) => {
+  app.delete("/treatments/:id", verifyToken, async (req, res) => {
     try {
       const { id } = req.params;
       await client.query("DELETE FROM treatments WHERE treatment_number=$1", [
