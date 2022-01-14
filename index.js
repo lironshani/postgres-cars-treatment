@@ -2,15 +2,20 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const initcrud = require("./crud");
+const initTreatmentsCrud = require("./treatmentsCrud");
+const initUsersCrud = require("./usersCrud");
+const client = require("./db");
+client.connect();
 require("dotenv").config();
 
 /*=============== middlewares ===========*/
 app.use(cors());
 app.use(express.json());
 
+
 /*=============== crud =============*/
-initcrud(app);
+initTreatmentsCrud(app);
+initUsersCrud(app);
 
 /*=============== server =============*/
 const port = process.env.PORT || 8000;
