@@ -110,7 +110,7 @@ const init = (app) => {
           message: "User with such email does not exist",
         });
       } else {
-        const { id, ...user } = existed_user.rows[0];
+        const user = existed_user.rows[0];
         const token = createToken(user.id);
         sendEmail("forgot-password", email, token);
         res
