@@ -10,7 +10,7 @@ app.use(cookieParser());
 client.connect();
 require("dotenv").config();
 
-const allowedOrigins = ["http://localhost:3000"];
+const allowedOrigins = [process.env.CLIENT_URL];
 const corsOptions = {
   origin: function (origin, callback) {
     if (allowedOrigins.indexOf(origin) !== -1) {
