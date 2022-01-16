@@ -25,7 +25,7 @@ const init = (app) => {
       client.end();
     }
   });
-  app.get("/treatments/:id", async (req, res) => {
+  app.get("/treatments/:id", verifyToken, async (req, res) => {
     try {
       const { id } = req.params;
       const treatment = await client.query(
