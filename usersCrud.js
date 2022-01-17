@@ -74,15 +74,6 @@ const init = (app) => {
 
           if (result) {
             const token = createToken(user.id);
-            // if (remember) {
-            // res.cookie("jwt", token, {
-            // httpOnly - So we wouldn't be able to change it from the client's JS code
-            // httpOnly: true,
-            // maxAge: maxAge * 1000,
-            // secure: false,
-            // });
-            // res.cookie("jwt", token);
-            // }
             const { password, ...userWithoutPassword } = user;
             res.status(200).json({ user: userWithoutPassword, token });
           } else {
